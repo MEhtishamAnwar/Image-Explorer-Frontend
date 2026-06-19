@@ -1,24 +1,14 @@
-
-
+import { useDispatch } from "react-redux"
+import { addCollection, addToaster } from "../Redux/features/collectionSlice"
 const ResultCard = ({ item }) => {
-
-const  addToCollection=(item)=>{
-
-
-  const oldData= JSON.parse( localStorage.getItem("collection"))|| []
-    
-
-  const newData=[...oldData,item]
-localStorage.setItem("collection",JSON.stringify(newData))
-}
-
-
-
-
+  const dispatch= useDispatch()
+const  addToCollection=()=>{
+  dispatch(addCollection(item))
+  dispatch(addToaster())
+} 
   if (!item) return null
 
   const { type, title, thumbnail, src } = item
-
   return (
     <div className='bg-white rounded-lg overflow-hidden shadow-md text-black'>
       {type === 'video' ? (

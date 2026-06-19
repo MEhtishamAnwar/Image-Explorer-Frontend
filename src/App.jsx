@@ -2,19 +2,58 @@ import React from 'react'
 import SearchBar from './components/SearchBar'
 import Tab from './components/Tab'
 import ResultGrid from './components/ResultGrid'
-import ResultCard from './components/ResultCard'
-import { Route, Routes } from 'react-router-dom'
-
+import CollectionPages from './pages/CollectionPages'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Routes, Route, NavLink } from 'react-router-dom'
 
 const App = () => {
   return (
-    <div className='h-full w-full text-white bg-gray-900'>
+    <div className='h-100% w-full text-white bg-gray-900'>
 
+      <header className='flex flex-col gap-4 p-6 bg-gray-800'>
+        <div className='flex flex-wrap gap-3 justify-between'>
 
-      <SearchBar/>
-      <Tab/>
-      <ResultGrid/>
+          <h1 className='text-amber-500 text-3xl'>Image Explorer</h1>
 
+          <div className="flex gap-5">
+
+     <NavLink
+            to='/'
+            className={({ isActive }) =>
+              `px-4 py-2 rounded ${isActive ? 'bg-amber-500 text-black' : 'bg-gray-700 text-white'}`
+            }
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to='/collection'
+            className={({ isActive }) =>
+              `px-4 py-2 rounded ${isActive ? 'bg-amber-500 text-black' : 'bg-gray-700 text-white'}`
+            }
+          >
+            Collection
+          </NavLink>
+
+          </div>
+     
+        </div>
+        <SearchBar />
+      </header>
+
+      <main>
+        <Routes>
+          <Route path='/' element={
+            <>
+              <Tab />
+              <ResultGrid />
+            </>
+          } />
+          <Route path='/collection' element={<CollectionPages />} />
+        </Routes>
+      </main>
+
+      <ToastContainer />
     </div>
   )
 }
