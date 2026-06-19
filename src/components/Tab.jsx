@@ -11,7 +11,17 @@ const Tab= () => {
     <div className='flex gap-10 p-10'>
         {tabs.map((elem,idx)=>{
             return <button
-              className={`${(activeTab==elem?'bg-amber-600':'bg-gray-700')} transition duration-300   px-4 py-2 text-xl rounded outline-none cursor-pointer active:scale-95`}
+            className={`
+  ${activeTab === elem ? "bg-amber-600" : "bg-gray-700"}
+  transition duration-300
+  px-3 py-2
+  text-sm sm:text-base md:text-lg lg:text-xl
+  rounded
+  outline-none
+  cursor-pointer
+  active:scale-95
+  whitespace-nowrap
+`}
             
             key={idx}
             onClick={()=>{
